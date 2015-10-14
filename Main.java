@@ -7,17 +7,16 @@ public class Main {
     }
 
 
-    public static void quickSort(int[] unordered, int p, int r) {
-        if (p < r) {
-            int q = partition(unordered, p, r);
-            quickSort(unordered, p, q - 1);
-            quickSort(unordered, q + 1, r);
+    public static void quickSort(int[] unordered, int linkeSeite, int rechteSeite) {
+        if (linkeSeite < rechteSeite) {
+            int pivot = partition(unordered, linkeSeite, rechteSeite);
+            quickSort(unordered, linkeSeite, pivot - 1);
+            quickSort(unordered, pivot + 1, rechteSeite);
 
         }
     }
 
     private static int partition(int[] unordered, int linkeSeite, int rechteSeite) {
-        System.out.println(Arrays.toString(unordered));
         int random = (int) (Math.random() * (rechteSeite));
 
         int pivot = unordered[random];
