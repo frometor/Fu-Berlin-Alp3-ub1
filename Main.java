@@ -6,36 +6,36 @@ public class Main {
     }
 
 
-   public static void quickSort(int[] A, int p, int r) {
+   public static void quickSort(int[] unordered, int p, int r) {
        if (p < r){
-            int q = partition(A,p,r);
-            quickSort(A,p,q-1);
-            quickSort(A,q+1,r);
+            int q = partition(unordered,p,r);
+            quickSort(unordered,p,q-1);
+            quickSort(unordered,q+1,r);
 
    }}
 
-    private static int partition(int[] A, int p, int r) {
-        System.out.println(Arrays.toString(A));
-        int s=(int) (Math.random() * (r));
-        System.out.println("pivot place is:"+s+" value: "+A[s]);
-        int x=A[s];
-        int i = p-1;
+    private static int partition(int[] unordered, int linkeSeite, int rechteSeite) {
+        System.out.println(Arrays.toString(unordered));
+        int random=(int) (Math.random() * (rechteSeite));
+
+        int pivot=unordered[random];
+        int i = linkeSeite-1;
         int tmp=0;
-        for (int j=p; j<=r-1;j++){
-            if (A[j]<=A[r]){
-              //  System.out.println("Is A[u]: "+A[u] +" >= A[r]: "+A[r] );
+        for (int j=linkeSeite; j<=rechteSeite-1;j++){
+            if (unordered[j]<=unordered[rechteSeite]){
+              //  System.out.println("Is unordered[u]: "+unordered[u] +" >= unordered[rechteSeite]: "+unordered[rechteSeite] );
                 i++;
-                tmp=A[i];
-                A[i]= A[j];
-                A[j]=tmp;
+                tmp=unordered[i];
+                unordered[i]= unordered[j];
+                unordered[j]=tmp;
             }
 
 
         }
-        tmp = A[i+1];
-        A[i+1]= A[r];
-        A[r]=tmp;
-       // System.out.println("Ordered? "+Arrays.toString(A));
+        tmp = unordered[i+1];
+        unordered[i+1]= unordered[rechteSeite];
+        unordered[rechteSeite]=tmp;
+       // System.out.println("Ordered? "+Arrays.toString(unordered));
         //System.out.println("pivot reordered: "+q);
         return (i+1);
     }
