@@ -9,7 +9,7 @@ public class Main {
         Quicksort sorting = new Quicksort();
         System.out.println(Arrays.toString(unordered));
 
-        Quicksort.quicksorting(unordered);
+        sorting.quicksorting(unordered);
 
         System.out.println(Arrays.toString(unordered));
 
