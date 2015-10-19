@@ -14,7 +14,7 @@ public class Quicksort {
 
     private static void quickSort(float[] unordered, int linkeSeite, int rechteSeite) {
 
-        if (linkeSeite < rechteSeite ) {
+        if (linkeSeite < rechteSeite) {
 
             int pivot = partition(unordered, linkeSeite, rechteSeite);
 
