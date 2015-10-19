@@ -2,17 +2,23 @@
  * Created by Erik on 13.10.2015.
  */
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.Arrays;
+
+
+import static java.util.Arrays.sort;
 
 public class Quicksort {
-    public static void quicksorting(int[] unordered) {
+    public static void quicksorting(float[] unordered) {
         quickSort(unordered, 0, unordered.length - 1);
     }
 
-    public static void quickSort(int[] unordered, int linkeSeite, int rechteSeite) {
-        if (linkeSeite < rechteSeite) {
+    private static void quickSort(float[] unordered, int linkeSeite, int rechteSeite) {
+
+        if (linkeSeite < rechteSeite ) {
+
             int pivot = partition(unordered, linkeSeite, rechteSeite);
+
+
             quickSort(unordered, linkeSeite, pivot - 1);
             quickSort(unordered, pivot + 1, rechteSeite);
 
@@ -20,12 +26,13 @@ public class Quicksort {
     }
 
 
-    private static int partition(int[] unordered, int linkeSeite, int rechteSeite) {
-        int random = (int) (Math.random() * (rechteSeite));
+    private static int partition(float[] unordered, int linkeSeite, int rechteSeite) {
 
-        int pivot = unordered[random];
+        int random = (int) (Math.random() * (rechteSeite));
+        //System.out.println(random);
+        float pivot = unordered[random];
         int i = linkeSeite - 1;
-        int tmp = 0;
+        float tmp = 0;
         for (int j = linkeSeite; j <= rechteSeite - 1; j++) {
             if (unordered[j] <= unordered[rechteSeite]) {
                 i++;
