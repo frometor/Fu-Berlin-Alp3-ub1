@@ -3,38 +3,45 @@
  */
 
 import java.util.Arrays;
-
-
-import static java.util.Arrays.sort;
+import java.util.Random;
 
 public class Quicksort {
-    public static void quicksorting(float[] unordered) {
+    public static long cmp = 0;
+    Random rando = new Random();
+    int random;
+    int pivot;
+    final static int b = 5;
+
+    public void quicksorting(float[] unordered) {
+
         quickSort(unordered, 0, unordered.length - 1);
     }
 
-    private static void quickSort(float[] unordered, int linkeSeite, int rechteSeite) {
+    private void quickSort(float[] unordered, int linkeSeite, int rechteSeite) {
+        if ((rechteSeite + 1 - linkeSeite) <= b) {
+            // cmp++;
+            insertionSort(unordered, linkeSeite, rechteSeite);
+        } else {
+            if (linkeSeite < rechteSeite) {
+                pivot = partition(unordered, linkeSeite, rechteSeite);
 
-        if (linkeSeite < rechteSeite) {
-
-            int pivot = partition(unordered, linkeSeite, rechteSeite);
-
-
-            quickSort(unordered, linkeSeite, pivot - 1);
-            quickSort(unordered, pivot + 1, rechteSeite);
-
+                quickSort(unordered, linkeSeite, pivot - 1);
+                quickSort(unordered, pivot + 1, rechteSeite);
+            }
         }
     }
 
 
-    private static int partition(float[] unordered, int linkeSeite, int rechteSeite) {
+    private int partition(float[] unordered, int linkeSeite, int rechteSeite) {
 
-        int random = (int) (Math.random() * (rechteSeite));
-        //System.out.println(random);
+        random = (int) (rando.nextFloat() * (rechteSeite));
+        // System.out.println(random);
         float pivot = unordered[random];
         int i = linkeSeite - 1;
         float tmp = 0;
         for (int j = linkeSeite; j <= rechteSeite - 1; j++) {
             if (unordered[j] <= unordered[rechteSeite]) {
+                cmp++;
                 i++;
                 tmp = unordered[i];
                 unordered[i] = unordered[j];
@@ -50,4 +57,19 @@ public class Quicksort {
         return (i + 1);
     }
 
+    public static float[] insertionSort(float[] sort, int linkeSeite, int rechteSeite) {
+        float tmp;
+        for (int i = linkeSeite + 1; i <= rechteSeite; i++) {
+            cmp++;
+            tmp = sort[i];
+            int j = i;
+            while (j > 0 && sort[j - 1] > tmp) {
+                cmp += 2;
+                sort[j] = sort[j - 1];
+                j--;
+            }
+            sort[j] = tmp;
+        }
+        return sort;
+    }
 }

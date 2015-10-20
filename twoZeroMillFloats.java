@@ -6,13 +6,12 @@ import java.util.Random;
 public class twoZeroMillFloats {
     public static float[] twoZeroMillFloats() {
         Random twoZeroMillFloats = new Random();
-        float[] array = new float[2000];
+        float[] array = new float[20000000];
         for (int i = 0; i < array.length; i++) {
-            int rand = (((twoZeroMillFloats.nextInt(10))));
-            float rando = (float) rand / 10;
-            //System.out.print(rando+", ");
-            array[i] = rando;
+            float rand = (((twoZeroMillFloats.nextFloat())));
+            float rando = (float) rand;
 
+            array[i] = rando;
         }
         return array;
     }
